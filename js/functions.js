@@ -24,10 +24,11 @@ const newGame = () => {
     maskedWord = "*".repeat(randomizedWord.length)
     console.log(randomizedWord)
     output.innerHTML = maskedWord
+    span.innerHTML = 0
 }
 
 const win = () => {
-    alert(`You have guessed right, the word is ${randomizedWord}.`)
+    alert(`You have guessed right, the word is ${randomizedWord}. It took you ${span.innerHTML} guesses.`)
     newGame()
 }
 
@@ -49,6 +50,7 @@ newGame()
 input.addEventListener('keypress',(e) => {
     if (e.key === 'Enter') {
         e.preventDefault() // Prevent form submission.
+        span.innerHTML++
 
         const guess = input.value
         if (guess.toLowerCase() === randomizedWord.toLocaleLowerCase()) {
